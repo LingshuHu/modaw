@@ -5,6 +5,6 @@ Version: 0.1.0
 Author: Lingshu Hu
 Maintainer: The package maintainer <lingshu.hu@hotmail.com>
 Description: Automatically write model scripts for lavaan.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
