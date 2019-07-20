@@ -1,0 +1,10 @@
+Package: modaw
+Type: Package
+Title: Automatically Write Model Scripts
+Version: 0.1.0
+Author: Lingshu Hu
+Maintainer: The package maintainer <lingshu.hu@hotmail.com>
+Description: Automatically write model scripts for lavaan.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
