@@ -1,4 +1,15 @@
 
+## get all residual combinations and exclude those without common items.
+form_resi_cor <- function(comb) {
+  split1 <- unlist(strsplit(comb[1], split = ".", fixed = TRUE))
+  split2 <- unlist(strsplit(comb[2], split = ".", fixed = TRUE))
+  if(any(split1 %in% split2)) {
+    combs <- paste0(comb[1], " ~~ ", comb[2])
+    return(combs)
+  } else {
+    return(NULL)
+  }
+}
 
 
 #' Write scripts of latent variables and/or residual correlations of items
@@ -45,10 +56,11 @@ auto_var <- function(variable_name, item_names = NULL, resi_cor = TRUE, item = N
     variable <- paste0(variable_name, " =~ ", variable)
     if(resi_cor) {
       comb <- utils::combn(item_names, m = 2, simplify = TRUE)
-      comb <- apply(comb, 2, function(x) paste0(x[1], " ~~ ", x[2]))
+      comb <- lapply(comb, form_resi_cor) ## use form_resi_cor to exclude non-common items
+      comb <- Filter(Negate(is.null), comb) ## filter null results
       cat(variable, sep = "\n")
       cat("# correlation residuals", sep = "\n")
-      cat(comb, sep = "\n")
+      cat(unlist(comb), sep = "\n")
     } else {
       cat(variable, sep = "\n")
     }
@@ -58,12 +70,15 @@ auto_var <- function(variable_name, item_names = NULL, resi_cor = TRUE, item = N
     variable <- paste0(variable_name, " =~ ", variable)
     if(resi_cor) {
       comb <- utils::combn(item_names, m = 2, simplify = TRUE)
-      comb <- apply(comb, 2, function(x) paste0(x[1], " ~~ ", x[2]))
+      comb <- lapply(comb, form_resi_cor) ## use form_resi_cor to exclude non-common items
+      comb <- Filter(Negate(is.null), comb) ## filter null results
       cat(variable, sep = "\n")
       cat("# correlation residuals", sep = "\n")
-      cat(comb, sep = "\n")
+      cat(unlist(comb), sep = "\n")
     } else {
       cat(variable, sep = "\n")
     }
   }
 }
+
+

@@ -32,7 +32,7 @@ item_names <- c("em1.an1", "em1.an2", "em1.an3", "em2.an1", "em2.an2", "em2.an3"
 ## get the scripts used for lavaan model by entering the item names
 auto_var(variable_name = "E.A", item_names = item_names)
 
-## creat a data frame with moderator items
+## creat a data frame with 9 items
 df <- data.frame(
   em1.an1 = c(3, 4, 5, 1),
   em1.an2 = c(1, 2, 5, 3),
