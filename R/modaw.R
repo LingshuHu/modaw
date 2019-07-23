@@ -55,7 +55,7 @@ auto_var <- function(variable_name, item_names = NULL, resi_cor = TRUE, item = N
     variable <- paste0(item_names, collapse = " + ")
     variable <- paste0(variable_name, " =~ ", variable)
     if(resi_cor) {
-      comb <- utils::combn(item_names, m = 2, simplify = TRUE)
+      comb <- utils::combn(item_names, m = 2, simplify = FALSE)
       comb <- lapply(comb, form_resi_cor) ## use form_resi_cor to exclude non-common items
       comb <- Filter(Negate(is.null), comb) ## filter null results
       cat(variable, sep = "\n")
@@ -69,7 +69,7 @@ auto_var <- function(variable_name, item_names = NULL, resi_cor = TRUE, item = N
     variable <- paste0(item_names, collapse = " + ")
     variable <- paste0(variable_name, " =~ ", variable)
     if(resi_cor) {
-      comb <- utils::combn(item_names, m = 2, simplify = TRUE)
+      comb <- utils::combn(item_names, m = 2, simplify = FALSE)
       comb <- lapply(comb, form_resi_cor) ## use form_resi_cor to exclude non-common items
       comb <- Filter(Negate(is.null), comb) ## filter null results
       cat(variable, sep = "\n")
